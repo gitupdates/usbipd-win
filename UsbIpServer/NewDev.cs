@@ -18,7 +18,7 @@ namespace UsbIpServer
         {
             if (!success)
             {
-                throw new Win32Exception(message);
+                throw new Win32Exception(Marshal.GetLastWin32Error(), message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace UsbIpServer
                 using var deviceInfoSet = new SafeDeviceInfoSet(PInvoke.SetupDiCreateDeviceInfoList((Guid*)null, default));
                 if (deviceInfoSet.IsInvalid)
                 {
-                    throw new Win32Exception(nameof(PInvoke.SetupDiCreateDeviceInfoList));
+                    throw new Win32Exception(Marshal.GetLastWin32Error(), nameof(PInvoke.SetupDiCreateDeviceInfoList));
                 }
                 var deviceInfoData = new SP_DEVINFO_DATA()
                 {
@@ -71,7 +71,7 @@ namespace UsbIpServer
                 using var deviceInfoSet = new SafeDeviceInfoSet(PInvoke.SetupDiCreateDeviceInfoList((Guid*)null, default));
                 if (deviceInfoSet.IsInvalid)
                 {
-                    throw new Win32Exception(nameof(PInvoke.SetupDiCreateDeviceInfoList));
+                    throw new Win32Exception(Marshal.GetLastWin32Error(), nameof(PInvoke.SetupDiCreateDeviceInfoList));
                 }
                 var deviceInfoData = new SP_DEVINFO_DATA()
                 {
@@ -117,7 +117,7 @@ namespace UsbIpServer
                 using var deviceInfoSet = new SafeDeviceInfoSet(PInvoke.SetupDiCreateDeviceInfoList((Guid*)null, default));
                 if (deviceInfoSet.IsInvalid)
                 {
-                    throw new Win32Exception(nameof(PInvoke.SetupDiCreateDeviceInfoList));
+                    throw new Win32Exception(Marshal.GetLastWin32Error(), nameof(PInvoke.SetupDiCreateDeviceInfoList));
                 }
                 var deviceInfoData = new SP_DEVINFO_DATA()
                 {
